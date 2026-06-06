@@ -2,35 +2,20 @@
 Adam Archuleta
 June 21, 2026
 Purpose: Custom child set handling standard metric to imperial conversion steps.
-Sources:HumanResources_part2_of_2 guidelines.
+Sources: HumanResources_part2_of_2 guidelines.
 */
 
-public class PersonImperialSet extends PersonSet 
-{
-    public PersonImperialSet() 
-    {
-        super();
+public class PersonImperialSet extends PersonSet {
+    public void add(Person p) {
+        super.add(new Person(p.getName(), p.getHeight() / 2.54, p.getWeight() * 2.20462));
     }
-
+    
     @Override
-    public void add(Person p) 
-    {
-        if (!people.contains(p)) 
-        {
-            double impHeight = convertHeight(p.getHeight());
-            double impWeight = convertWeight(p.getWeight());
-            Person impPerson = new Person(p.getName(), impHeight, impWeight);
-            super.add(impPerson);
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (Person p : people) {
+            s.append(p.toString(true)).append("\n");
         }
-    }
-
-    private double convertHeight(double cm) 
-    {
-        return cm / 2.54; // Centimeters to Inches
-    }
-
-    private double convertWeight(double kg) 
-    {
-        return kg * 2.20462; // Kilograms to Pounds
+        return s.toString();
     }
 }

@@ -5,45 +5,39 @@ Purpose: Blueprint representing unique character records and sorting capabilitie
 Sources: HumanResources_part2_of_2 guidelines.
 */
 
-public class Person implements Comparable<Person> 
-{
+public class Person implements Comparable<Person> {
     private String name;
-    private double height;
-    private double weight;
-
-    public Person(String name, double height, double weight) 
-    {
-        this.name = name;
-        this.height = height;
-        this.weight = weight;
+    private double height, weight;
+    
+    public Person(String n, double h, double w) { 
+        name = n; 
+        height = h; 
+        weight = w; 
     }
-
+    
     public String getName() { return name; }
     public double getHeight() { return height; }
     public double getWeight() { return weight; }
-
-    public void setHeight(double height) { this.height = height; }
-    public void setWeight(double weight) { this.weight = weight; }
-
+    
     @Override
-    public String toString() 
-    {
-        return String.format("%s\t%.2f\t%.2f", name, height, weight);
+    public String toString() { 
+        return toString(false); 
     }
-
+    
+    public String toString(boolean isImperial) {
+        if (isImperial) {
+            return String.format("%s\t%.2f\t%.2f", name, height, weight);
+        }
+        return String.format("%s\t%.0f\t%.0f", name, height, weight);
+    }
+    
     @Override
-    public boolean equals(Object o) 
-    {
-        if (o == null) return false;
-        if (o == this) return true;
-        if (!(o instanceof Person)) return false;
+    public boolean equals(Object o) {
         Person p = (Person) o;
-        return this.name.equalsIgnoreCase(p.name);
+        return name.equalsIgnoreCase(p.name);
     }
-
-    @Override
-    public int compareTo(Person p) 
-    {
-        return this.name.compareToIgnoreCase(p.name);
+    
+    public int compareTo(Person p) { 
+        return name.compareToIgnoreCase(p.name); 
     }
 }

@@ -1,49 +1,28 @@
 /*
 Adam Archuleta
-June 5, 2026
-Purpose: Parent set class implementing standard tracking and duplicate checks.
-Sources: Course Syllabus AI Policy; HumanResources_part2_of_2 guidelines.
+June 21, 2026
+Purpose: Base set container for blocking duplicates.
+Sources: HumanResources_part2_of_2 guidelines.
 */
 
 import java.util.ArrayList;
 
-public class PersonSet implements PersonList 
-{
-    protected ArrayList<Person> people;
-
-    public PersonSet() 
-    {
-        people = new ArrayList<Person>();
+public class PersonSet implements PersonList {
+    protected ArrayList<Person> people = new ArrayList<>();
+    
+    public void add(Person p) { 
+        if (!people.contains(p)) people.add(p); 
     }
-
-    @Override
-    public void add(Person p) 
-    {
-        if (!people.contains(p)) 
-        {
-            people.add(p);
+    
+    public Person get(int i) { 
+        return people.get(i); 
+    }
+    
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (Person p : people) {
+            s.append(p.toString(false)).append("\n");
         }
-    }
-
-    @Override
-    public Person get(int index) 
-    {
-        return people.get(index);
-    }
-
-    public int size() 
-    {
-        return people.size();
-    }
-
-    @Override
-    public String toString() 
-    {
-        StringBuilder sb = new StringBuilder();
-        for (Person p : people) 
-        {
-            sb.append(p.toString()).append("\n");
-        }
-        return sb.toString();
+        return s.toString();
     }
 }

@@ -7,25 +7,9 @@ Sources: HumanResources_part2_of_2 guidelines.
 
 import java.util.Collections;
 
-public class PersonOrderedSet extends PersonSet 
-{
-    public PersonOrderedSet() 
-    {
-        super();
-    }
-
-    @Override
-    public void add(Person p) 
-    {
-        if (!people.contains(p)) 
-        {
-            super.add(p);
-            sort();
-        }
-    }
-
-    private void sort() 
-    {
+public class PersonOrderedSet extends PersonSet {
+    public void add(Person p) {
+        super.add(p);
         Collections.sort(people);
     }
 }

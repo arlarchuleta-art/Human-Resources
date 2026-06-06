@@ -1,4 +1,4 @@
-Name	Height(in)	Weight(lb)
+Name	Height (in)	Weight (lb)
 Mario	61.02	198.42
 Luigi	62.20	182.98
 Bowser	122.05	1600.55
